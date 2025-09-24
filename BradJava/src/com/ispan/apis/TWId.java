@@ -2,7 +2,27 @@ package com.ispan.apis;
 
 public class TWId {
 	private String id;
+	private static String letters = "ABCDEFGHJKLMNPQRSTUVXYWZIO";
+
+	public TWId() {
+		this((int)(Math.random()*2) == 0);
+	}
+	public TWId(boolean isMale) {
+		this(isMale, letters.charAt((int)(Math.random()*26)));
+	}
+	public TWId(char area) {
+		this((int)(Math.random()*2) == 0, area);
+	}
+	public TWId(boolean isMale, char area) {
+		
+	}
 	
+	
+//	public TWId(String id) {
+//		this.id = id;
+//	}
+	
+
 	public static boolean isRight(String id) {
 		boolean isRight = false;
 //		if (id.length() == 10) {
@@ -17,7 +37,7 @@ public class TWId {
 //		}
 		
 		if (id.matches("[A-Z][12][0-9]{8}")) {
-			String letters = "ABCDEFGHJKLMNPQRSTUVXYWZIO";
+			
 			char c1 = id.charAt(0);
 			int a12 = letters.indexOf(c1) + 10;
 			int a1 = a12 / 10;
