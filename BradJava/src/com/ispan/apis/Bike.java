@@ -1,6 +1,6 @@
 package com.ispan.apis;
 
-public class Bike {
+public class Bike extends Object {
 	protected double speed;
 	
 	public void upSpeed() {
@@ -13,4 +13,10 @@ public class Bike {
 	public double getSpeed() {
 		return speed;
 	}
+	
+	@Override
+	public String toString() {
+		return String.format("Speed = %f", speed);
+	}
+	
 }
