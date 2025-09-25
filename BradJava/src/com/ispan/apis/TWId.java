@@ -30,13 +30,30 @@ public class TWId {
 	}
 	
 	
-//	public TWId(String id) {
-//		this.id = id;
-//	}
+	private TWId(String id) {
+		this.id = id;
+	}
+	
+	public static TWId createTWId(String id) {
+		if (isRight(id)) {
+			return new TWId(id);
+		}else {
+			return null;
+		}
+	}
 	
 	
 	public String getId() {
 		return id;
+	}
+	
+	
+	public boolean getGender() {
+		return true;
+	}
+	
+	public String getArea() {
+		return "台中縣";
 	}
 
 	public static boolean isRight(String id) {
