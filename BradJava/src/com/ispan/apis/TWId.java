@@ -1,20 +1,32 @@
 package com.ispan.apis;
 
+import java.util.Random;
+
 public class TWId {
 	private String id;
 	private static String letters = "ABCDEFGHJKLMNPQRSTUVXYWZIO";
 
 	public TWId() {
-		this((int)(Math.random()*2) == 0);
+		this(new Random().nextBoolean());
 	}
 	public TWId(boolean isMale) {
-		this(isMale, letters.charAt((int)(Math.random()*26)));
+		this(isMale, letters.charAt(new Random().nextInt(26)));
 	}
 	public TWId(char area) {
-		this((int)(Math.random()*2) == 0, area);
+		this(new Random().nextBoolean(), area);
 	}
 	public TWId(boolean isMale, char area) {
+		StringBuffer sb = new StringBuffer();
+		sb.append(area);
+		sb.append(isMale?'1':'2');
+		for (int i=0;i<7;i++)sb.append(new Random().nextInt(10));
 		
+		for (int i=0; i<10; i++) {
+			if (isRight(sb.toString() + i)) {
+				id = sb.append(i).toString();
+				break;
+			}
+		}
 	}
 	
 	
@@ -22,6 +34,10 @@ public class TWId {
 //		this.id = id;
 //	}
 	
+	
+	public String getId() {
+		return id;
+	}
 
 	public static boolean isRight(String id) {
 		boolean isRight = false;
