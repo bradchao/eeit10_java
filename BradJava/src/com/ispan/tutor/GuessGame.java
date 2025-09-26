@@ -1,6 +1,8 @@
 package com.ispan.tutor;
 
 import java.awt.BorderLayout;
+import java.awt.Color;
+import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
@@ -10,20 +12,32 @@ import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JTextArea;
 import javax.swing.JTextField;
+import javax.swing.JTextPane;
+import javax.swing.text.Style;
+import javax.swing.text.StyleConstants;
+import javax.swing.text.StyledDocument;
 
 public class GuessGame extends JFrame implements ActionListener{
 	private JTextField input;
 	private JButton guess;
-	private JTextArea log;
+	
+	//private JTextArea log;
+	private JTextPane log;
+	
 	private String answer;
 	private int counter;
+	private int dig = 4;
 	
 	public GuessGame() {
 		super("猜數字遊戲");
 		
 		input = new JTextField();
+		input.setFont(new Font(null, Font.BOLD, 24));
+		input.setForeground(Color.BLUE);
+		
 		guess = new JButton("猜");
-		log = new JTextArea();
+		log = new JTextPane();
+		log.setFont(new Font(null, Font.BOLD, 24));
 		
 		setLayout(new BorderLayout());
 		add(log, BorderLayout.CENTER);
@@ -46,7 +60,8 @@ public class GuessGame extends JFrame implements ActionListener{
 	private void initGame() {
 		counter = 0;
 		answer = createAnswer();
-		System.out.println(answer);
+		//System.out.println(answer);
+		log.setText("");
 		
 	}
 	
@@ -64,7 +79,7 @@ public class GuessGame extends JFrame implements ActionListener{
 		}	
 		
 		StringBuffer sb = new StringBuffer();
-		sb.append(poker[0]).append(poker[1]).append(poker[2]);
+		for (int i=0; i<dig; i++) sb.append(poker[i]);
 		
 		return sb.toString();
 	}
@@ -80,13 +95,38 @@ public class GuessGame extends JFrame implements ActionListener{
 		counter++;
 		String g = input.getText();
 		String result = checkAB(g);
-		log.append(String.format("%d. %s => %s\n", counter, g, result));
+		
+		StyledDocument style = log.getStyledDocument();
+		
+ 		Style s0 = style.addStyle("s0", null);
+		StyleConstants.setForeground(s0, Color.ORANGE);
+		
+ 		Style s1 = style.addStyle("s1", null);
+		StyleConstants.setForeground(s1, Color.RED);
+		
+ 		Style s2 = style.addStyle("s2", null);
+		StyleConstants.setForeground(s2, Color.BLACK);
+		
+ 		Style s3 = style.addStyle("s3", null);
+		StyleConstants.setForeground(s3, Color.BLUE);
+		
+		try {
+			style.insertString(style.getLength(), String.format("%d. ", counter), s0);
+			style.insertString(style.getLength(), g, s1);
+			style.insertString(style.getLength(), " => ", s2);
+			style.insertString(style.getLength(), result + "\n", s3);
+		}catch(Exception ee) {}
+		
+		//log.append(String.format("%d. %s => %s\n", counter, g, result));
+		
 		input.setText("");
 		
-		if (result.equals("3A0B")) {
+		if (result.equals( dig + "A0B")) {
 			JOptionPane.showMessageDialog(null, "WINNER");
+			initGame();
 		}else if (counter == 10) {
 			JOptionPane.showMessageDialog(null, "LOSER:" + answer);
+			initGame();
 		}
 		
 	}
