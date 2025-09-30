@@ -8,15 +8,16 @@ import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.util.LinkedList;
 
-import javax.swing.DebugGraphics;
 import javax.swing.JPanel;
 
 public class MyDrawer extends JPanel {
-	private LinkedList points;
+	private LinkedList<Point> points;
 	
 	
 	public MyDrawer() {
 		setBackground(Color.GREEN);
+		
+		points = new LinkedList<>();
 		
 		MyListener myListener = new MyListener();
 		addMouseListener(myListener);
@@ -31,12 +32,15 @@ public class MyDrawer extends JPanel {
 	private class MyListener extends MouseAdapter {
 		@Override
 		public void mousePressed(MouseEvent e) {
-			System.out.println("Press: " + e.getX() + " x " + e.getY());
+			Point p = new Point(e.getX(), e.getY());
+			points.add(p);
 		}
 		
 		@Override
 		public void mouseDragged(MouseEvent e) {
-			System.out.println("Drag: " + e.getX() + " x " + e.getY());
+			Point p = new Point(e.getX(), e.getY());
+			points.add(p);
+			repaint();
 		}
 	}
 	
@@ -48,9 +52,13 @@ public class MyDrawer extends JPanel {
 
 		Graphics2D g2d = (Graphics2D)g;
 		g2d.setStroke(new BasicStroke(4));
-		
 		g2d.setColor(Color.BLUE);
-		g2d.drawLine(0, 0, 200, 300);
+		
+		for (int i=1; i<points.size(); i++) {
+			Point p0 = points.get(i-1);
+			Point p1 = points.get(i);
+			g2d.drawLine(p0.getX(), p0.getY(), p1.getX(), p1.getY());
+		}
 		
 	}
 	
