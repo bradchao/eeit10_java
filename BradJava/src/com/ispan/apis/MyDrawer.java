@@ -11,13 +11,13 @@ import java.util.LinkedList;
 import javax.swing.JPanel;
 
 public class MyDrawer extends JPanel {
-	private LinkedList<Point> points;
+	private LinkedList<Line> lines;
 	
 	
 	public MyDrawer() {
 		setBackground(Color.GREEN);
 		
-		points = new LinkedList<>();
+		lines = new LinkedList<>();
 		
 		MyListener myListener = new MyListener();
 		addMouseListener(myListener);
@@ -25,21 +25,17 @@ public class MyDrawer extends JPanel {
 
 	}
 	
-	public LinkedList getPoints() {
-		return points;
-	}
-	
 	private class MyListener extends MouseAdapter {
 		@Override
 		public void mousePressed(MouseEvent e) {
-			Point p = new Point(e.getX(), e.getY());
-			points.add(p);
+			Line line = new Line();
+			line.addPoint(e.getX(), e.getY());
+			lines.add(line);
 		}
 		
 		@Override
 		public void mouseDragged(MouseEvent e) {
-			Point p = new Point(e.getX(), e.getY());
-			points.add(p);
+			lines.getLast().addPoint(e.getX(), e.getY());
 			repaint();
 		}
 	}
@@ -54,11 +50,16 @@ public class MyDrawer extends JPanel {
 		g2d.setStroke(new BasicStroke(4));
 		g2d.setColor(Color.BLUE);
 		
-		for (int i=1; i<points.size(); i++) {
-			Point p0 = points.get(i-1);
-			Point p1 = points.get(i);
-			g2d.drawLine(p0.getX(), p0.getY(), p1.getX(), p1.getY());
+		for (Line line: lines) {
+			for (int i=1; i<line.length(); i++) {
+				Point p0 = line.getPoint(i-1);
+				Point p1 = line.getPoint(i);
+				g2d.drawLine(p0.getX(), p0.getY(), p1.getX(), p1.getY());
+			}			
 		}
+		
+		
+
 		
 	}
 	
