@@ -1,9 +1,12 @@
 package com.ispan.apis;
 
+import java.awt.Color;
 import java.util.ArrayList;
 
 public class Line {
 	private ArrayList<Point> points;
+	private Color color;
+	private float width;
 	
 	public Line() {
 		points = new ArrayList<>();
