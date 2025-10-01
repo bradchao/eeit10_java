@@ -42,6 +42,13 @@ public class TWId {
 		}
 	}
 	
+	public static TWId createTWIdV2(String id) throws Exception{
+		if (isRight(id)) {
+			return new TWId(id);
+		}else {
+			throw new Exception();
+		}
+	}
 	
 	public String getId() {
 		return id;

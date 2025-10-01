@@ -1,6 +1,6 @@
 package com.ispan.tutor;
 
-public class Brad40 {
+public class Brad41 {
 	public static void main(String[] args) {
 		int a = 10, b = 3;
 		int c;
@@ -8,13 +8,9 @@ public class Brad40 {
 		try {
 			c = a / b;
 			System.out.println(c);
-			System.out.println(d[1]);
-		}catch(ArithmeticException e) {
+			System.out.println(d[10]);
+		}catch(Exception e) {
 			System.out.println("Err");
-		}catch(ArrayIndexOutOfBoundsException ee) {
-			System.out.println("Oooop!");
-		}catch(RuntimeException ee) {
-			System.out.println("Oooop!");
 		}
 		System.out.println("End");
 	}
