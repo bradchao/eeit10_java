@@ -32,7 +32,7 @@ public class MyDrawer extends JPanel {
 	private class MyListener extends MouseAdapter {
 		@Override
 		public void mousePressed(MouseEvent e) {
-			Line line = new Line(defaultColor);
+			Line line = new Line2(defaultColor);
 			line.addPoint(e.getX(), e.getY());
 			lines.add(line);
 			recycler.clear();
@@ -58,9 +58,8 @@ public class MyDrawer extends JPanel {
 		for (Line line: lines) {
 			g2d.setColor(line.getColor());
 			for (int i=1; i<line.length(); i++) {
-				Point p0 = line.getPoint(i-1);
-				Point p1 = line.getPoint(i);
-				g2d.drawLine(p0.getX(), p0.getY(), p1.getX(), p1.getY());
+				g2d.drawLine(line.getPointX(i-1), line.getPointY(i-1), 
+						line.getPointX(i), line.getPointY(i));
 			}			
 		}
 	}
