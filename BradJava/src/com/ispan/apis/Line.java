@@ -8,8 +8,9 @@ public class Line {
 	private Color color;
 	private float width;
 	
-	public Line() {
+	public Line(Color color) {
 		points = new ArrayList<>();
+		this.color = color;
 	}
 	
 	public void addPoint(int x, int y) {
@@ -20,5 +21,8 @@ public class Line {
 	public Point getPoint(int index) {
 		return points.get(index);
 	}
+	
+	public Color getColor() {return color;}
+	
 	
 }

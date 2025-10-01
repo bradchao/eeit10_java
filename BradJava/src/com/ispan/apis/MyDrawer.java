@@ -12,10 +12,13 @@ import javax.swing.JPanel;
 
 public class MyDrawer extends JPanel {
 	private LinkedList<Line> lines, recycler;
+	private Color defaultColor;
 	
 	
 	public MyDrawer() {
 		setBackground(Color.GREEN);
+		
+		defaultColor = Color.BLUE;
 		
 		lines = new LinkedList<>();
 		recycler = new LinkedList<>();
@@ -29,7 +32,7 @@ public class MyDrawer extends JPanel {
 	private class MyListener extends MouseAdapter {
 		@Override
 		public void mousePressed(MouseEvent e) {
-			Line line = new Line();
+			Line line = new Line(defaultColor);
 			line.addPoint(e.getX(), e.getY());
 			lines.add(line);
 			recycler.clear();
@@ -50,9 +53,10 @@ public class MyDrawer extends JPanel {
 
 		Graphics2D g2d = (Graphics2D)g;
 		g2d.setStroke(new BasicStroke(4));
-		g2d.setColor(Color.BLUE);
+		
 		
 		for (Line line: lines) {
+			g2d.setColor(line.getColor());
 			for (int i=1; i<line.length(); i++) {
 				Point p0 = line.getPoint(i-1);
 				Point p1 = line.getPoint(i);
@@ -80,6 +84,17 @@ public class MyDrawer extends JPanel {
 			repaint();
 		}
 	}
+
+	public Color getDefaultColor() {
+		return defaultColor;
+	}
+
+	public void setDefaultColor(Color defaultColor) {
+		this.defaultColor = defaultColor;
+	}
+	
+	
+	
 	
 }
 
