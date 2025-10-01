@@ -11,13 +11,14 @@ import java.util.LinkedList;
 import javax.swing.JPanel;
 
 public class MyDrawer extends JPanel {
-	private LinkedList<Line> lines;
+	private LinkedList<Line> lines, recycler;
 	
 	
 	public MyDrawer() {
 		setBackground(Color.GREEN);
 		
 		lines = new LinkedList<>();
+		recycler = new LinkedList<>();
 		
 		MyListener myListener = new MyListener();
 		addMouseListener(myListener);
@@ -31,6 +32,7 @@ public class MyDrawer extends JPanel {
 			Line line = new Line();
 			line.addPoint(e.getX(), e.getY());
 			lines.add(line);
+			recycler.clear();
 		}
 		
 		@Override
@@ -57,10 +59,26 @@ public class MyDrawer extends JPanel {
 				g2d.drawLine(p0.getX(), p0.getY(), p1.getX(), p1.getY());
 			}			
 		}
-		
-		
-
-		
+	}
+	
+	public void clear() {
+		lines.clear();
+		recycler.clear();
+		repaint();
+	}
+	
+	public void undo() {
+		if (lines.size() > 0) {
+			recycler.add(lines.removeLast());
+			repaint();
+		}
+	}
+	
+	public void redo() {
+		if (recycler.size() > 0) {
+			lines.add(recycler.removeLast());
+			repaint();
+		}
 	}
 	
 }

@@ -41,21 +41,21 @@ public class MySign extends JFrame {
 		clear.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				
+				myDrawer.clear();
 			}
 		});
 		
 		undo.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				
+				myDrawer.undo();
 			}
 		});
 		
 		redo.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				
+				myDrawer.redo();
 			}
 		});
 
