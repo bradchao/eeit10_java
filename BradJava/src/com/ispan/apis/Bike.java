@@ -16,9 +16,9 @@ public class Bike extends Object {
 		return speed;
 	}
 	
-//	@Override
-//	public String toString() {
-//		return String.format("Speed = %f", speed);
-//	}
+	@Override
+	public String toString() {
+		return String.format("Speed = %f", speed);
+	}
 	
 }
