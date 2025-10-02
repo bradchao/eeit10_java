@@ -1,8 +1,9 @@
 package com.ispan.apis;
 
 import java.awt.Color;
+import java.io.Serializable;
 
-public interface Line {
+public interface Line extends Serializable{
 	public void addPoint(int x, int y);
 	public int length();
 	

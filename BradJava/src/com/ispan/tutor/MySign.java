@@ -15,7 +15,7 @@ import com.ispan.apis.MyDrawer;
 
 public class MySign extends JFrame {
 	private MyDrawer myDrawer;
-	private JButton clear, undo, redo, color;
+	private JButton clear, undo, redo, color, save, load;
 	
 	public MySign() {
 		super("簽名 App");
@@ -29,7 +29,10 @@ public class MySign extends JFrame {
 		undo = new JButton("上一步");
 		redo = new JButton("復原");
 		color = new JButton("顏色");
+		save = new JButton("序列化");
+		load = new JButton("解序列");
 		top.add(clear); top.add(undo);top.add(redo);top.add(color);
+		top.add(save); top.add(load);
 		
 		add(top, BorderLayout.NORTH);
 		
@@ -66,6 +69,18 @@ public class MySign extends JFrame {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				changeColor();
+			}
+		});
+		save.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				
+			}
+		});
+		load.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				
 			}
 		});
 

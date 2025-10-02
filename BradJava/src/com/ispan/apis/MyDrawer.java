@@ -6,6 +6,11 @@ import java.awt.Graphics;
 import java.awt.Graphics2D;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileOutputStream;
+import java.io.ObjectInputStream;
+import java.io.ObjectOutputStream;
 import java.util.LinkedList;
 
 import javax.swing.JPanel;
@@ -92,8 +97,20 @@ public class MyDrawer extends JPanel {
 		this.defaultColor = defaultColor;
 	}
 	
+	public void saveLines(File file) throws Exception {
+		try(ObjectOutputStream oout = new ObjectOutputStream(
+				new FileOutputStream(file))){
+			oout.writeObject(lines);
+		}
+	}
 	
-	
+	public void loadLines(File file) throws Exception {
+		try(ObjectInputStream oin = new ObjectInputStream(
+				new FileInputStream(file))){
+			lines = (LinkedList<Line>)oin.readObject();
+			repaint();
+		}
+	}
 	
 }
 

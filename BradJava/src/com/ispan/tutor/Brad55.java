@@ -17,8 +17,7 @@ public class Brad55 {
 			System.out.println(obj);
 			Student s1 = (Student)obj;
 			System.out.println(s1);
-			System.out.println(s1.score());
-			System.out.println(s1.avg());
+			System.out.println(s1.getBike());
 			
 			System.out.println("Load OK");
 		}catch(Exception e) {
