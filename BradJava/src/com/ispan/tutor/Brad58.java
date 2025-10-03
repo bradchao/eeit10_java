@@ -8,12 +8,12 @@ import java.net.SocketException;
 public class Brad58 {
 
 	public static void main(String[] args) {
-		String mesg = "Hello, World";
+		String mesg = "吃麥當當";
 		byte[] data = mesg.getBytes();
 		
 		try (DatagramSocket socket = new DatagramSocket();){
 			DatagramPacket packet = new DatagramPacket(data, data.length, 
-					InetAddress.getByName("10.0.103.238"), 8888);
+					InetAddress.getByName("10.0.103.255"), 8888);
 			socket.send(packet);
 			System.out.println("Send OK");
 		} catch (Exception e) {
