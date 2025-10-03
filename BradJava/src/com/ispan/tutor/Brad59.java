@@ -2,6 +2,7 @@ package com.ispan.tutor;
 
 import java.net.DatagramPacket;
 import java.net.DatagramSocket;
+import java.net.InetAddress;
 import java.net.SocketException;
 
 public class Brad59 {
@@ -11,7 +12,13 @@ public class Brad59 {
 		try (DatagramSocket socket = new DatagramSocket(8888);){
 			DatagramPacket packet = new DatagramPacket(buf, buf.length);
 			socket.receive(packet);
-			System.out.println("Receive OK");
+			
+			byte[] data = packet.getData();
+			int len = packet.getLength();
+			InetAddress urip = packet.getAddress();
+			String mesg = new String(data,0, len);
+			System.out.printf("%s : %s\n", urip.getHostAddress(), mesg);
+			
 		} catch (Exception e) {
 			System.out.println(e);
 		}
