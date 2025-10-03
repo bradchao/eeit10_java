@@ -6,6 +6,7 @@ import java.awt.Graphics;
 import java.awt.Graphics2D;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
@@ -13,6 +14,7 @@ import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.util.LinkedList;
 
+import javax.imageio.ImageIO;
 import javax.swing.JPanel;
 
 public class MyDrawer extends JPanel {
@@ -109,7 +111,27 @@ public class MyDrawer extends JPanel {
 				new FileInputStream(file))){
 			lines = (LinkedList<Line>)oin.readObject();
 			repaint();
+			recycler.clear();
 		}
+	}
+	public void loadLines2(File file) throws Exception {
+		ObjectInputStream oin = new ObjectInputStream(
+				new FileInputStream(file));
+		lines = (LinkedList<Line>)oin.readObject();
+		oin.close();
+		repaint();
+		recycler.clear();
+	}
+	
+	
+	public boolean saveJpeg(File file) throws Exception {
+		BufferedImage img = 
+			new BufferedImage(getWidth(), getHeight(), BufferedImage.TYPE_INT_RGB);
+		Graphics2D g2d = img.createGraphics();
+		paint(g2d);
+		
+		return ImageIO.write(img, "jpeg", file);
+		
 	}
 	
 }
