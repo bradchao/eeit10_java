@@ -13,7 +13,7 @@ public class Brad67 {
 
 	public static void main(String[] args) {
 		try {
-			URL url = new URL("https://data.moa.gov.tw/Service/OpenData/ODwsv/ODwsvTravelFood.aspx");
+			URL url = new URL("https://data.moenv.gov.tw/api/v2/gp_p_01?api_key=af57253c-e838-46da-a1f5-12b43afd75f3&limit=1000&sort=ImportDate%20desc&format=JSON");
 			URLConnection conn =  url.openConnection();
 			
 			BufferedReader br = new BufferedReader(new InputStreamReader(conn.getInputStream()));
@@ -25,7 +25,7 @@ public class Brad67 {
 			System.out.println("OK:" + sb.length());
 			//System.out.println(sb.toString());
 			
-			parseJSON(sb.toString());
+			parseJSON2(sb.toString());
 			
 		} catch (Exception e) {
 			System.out.println(e);
@@ -39,10 +39,17 @@ public class Brad67 {
 			String name = obj.getString("Name");
 			System.out.println(name);
 		}
-		
-		
 	}
 	
+	static void parseJSON2(String json) {
+		JSONObject root = new JSONObject(json);
+		JSONArray fields = root.getJSONArray("records");
+		for (int i=0; i<fields.length(); i++) {
+			JSONObject field = fields.getJSONObject(i);
+			String id = field.getString("storename");
+			System.out.println(id);
+		}
+	}
 	
 	
 
