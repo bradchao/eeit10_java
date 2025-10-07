@@ -8,7 +8,7 @@ import java.net.SocketException;
 public class Brad59 {
 
 	public static void main(String[] args) {
-		while(true) {
+		//while(true) {
 			byte[] buf = new byte[1024];
 			try (DatagramSocket socket = new DatagramSocket(8888);){
 				DatagramPacket packet = new DatagramPacket(buf, buf.length);
@@ -20,12 +20,12 @@ public class Brad59 {
 				String mesg = new String(data,0, len);
 				System.out.printf("%s : %s\n", urip.getHostAddress(), mesg);
 				if (mesg.equals("bye")) {
-					break;
+					//break;
 				}
 			} catch (Exception e) {
 				System.out.println(e);
 			}
-		}
+		//}
 	}
 
 }
