@@ -11,6 +11,7 @@ import javax.swing.JLabel;
 public class RacingGame extends JFrame{
 	private JButton go;
 	private JLabel[] lanes;
+	private Car[] cars;
 	
 	public RacingGame() {
 		super("Racing");
@@ -38,6 +39,36 @@ public class RacingGame extends JFrame{
 	
 	
 	private void go() {
+		cars = new Car[8];
+		for (int i=0; i<cars.length; i++) {
+			cars[i] = new Car(i);
+		}
+		
+		for (Car car: cars) {
+			car.start();
+		}
+		
+		
+	}
+	
+	private class Car extends Thread {
+		private int lane;
+		private StringBuffer sb;
+		Car(int lane){
+			this.lane = lane;
+			sb = new StringBuffer(String.format("%d. ", (lane+1)));
+		}
+		@Override
+		public void run() {
+			for (int i =0; i<100; i++) {
+				sb.append(">");
+				lanes[lane].setText(sb.toString());
+				try {
+					Thread.sleep(100);
+				} catch (InterruptedException e) {
+				}
+			}
+		}
 	}
 	
 	public static void main(String[] args) {
