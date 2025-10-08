@@ -14,6 +14,7 @@ import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 
+import com.ispan.apis.MyClock;
 import com.ispan.apis.MyDrawer;
 
 public class MySign extends JFrame {
@@ -37,6 +38,7 @@ public class MySign extends JFrame {
 		saveJpeg = new JButton("JPEG");
 		top.add(clear); top.add(undo);top.add(redo);top.add(color);
 		top.add(save); top.add(load); top.add(saveJpeg);
+		top.add(new MyClock());
 		
 		add(top, BorderLayout.NORTH);
 		
