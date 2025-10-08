@@ -8,6 +8,8 @@ import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 
+import com.ispan.apis.MyClock;
+
 public class RacingGame extends JFrame{
 	private JButton go;
 	private JLabel[] lanes;
@@ -17,7 +19,8 @@ public class RacingGame extends JFrame{
 	public RacingGame() {
 		super("Racing");
 		
-		setLayout(new GridLayout(9, 1));
+		setLayout(new GridLayout(10, 1));
+		add(new MyClock());
 		go = new JButton("Go!"); add(go);
 		
 		lanes = new JLabel[8];
