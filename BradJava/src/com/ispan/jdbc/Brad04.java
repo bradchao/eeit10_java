@@ -23,6 +23,7 @@ public class Brad04 {
 		try (Connection conn = DriverManager.getConnection(url, prop);) {
 			
 			PreparedStatement pstmt = conn.prepareStatement(sqlInsert);
+			
 			pstmt.setString(1, "Mark");
 			pstmt.setString(2, "222");
 			pstmt.setString(3, "1999-10-10");
