@@ -9,12 +9,14 @@ import java.sql.Statement;
 import java.util.Properties;
 import java.util.Scanner;
 
+import com.ispan.apis.BCrypt;
+
 public class Brad09 {
 	private static final String URL = "jdbc:mysql://localhost:3306/iii";
 	private static final String USER = "root";
 	private static final String PASSWD = "root";
 	private static final String SQL_CHECK = """
-			SELECT account FROM member
+			SELECT count(account) count FROM member
 			WHERE account = ?
 		""";	
 	private static final String SQL_INSERT = """
@@ -41,8 +43,26 @@ public class Brad09 {
 		
 		try (Connection conn = DriverManager.getConnection(URL, prop);) {
 			
-			//PreparedStatement pstmt = conn.prepareStatement(sql);
-			
+			PreparedStatement pstmt = conn.prepareStatement(SQL_CHECK);
+			pstmt.setString(1, account);
+			ResultSet rs = pstmt.executeQuery();
+			rs.next();
+			int count = rs.getInt("count");
+			if (count == 0) {
+				PreparedStatement pstmtInsert = conn.prepareStatement(SQL_INSERT);
+				pstmtInsert.setString(1, account);
+				pstmtInsert.setString(2, BCrypt.hashpw(passwd, BCrypt.gensalt()));
+				pstmtInsert.setString(3, name);
+				int n = pstmtInsert.executeUpdate();
+				if (n > 0) {
+					System.out.println("Register Success");
+				}else {
+					System.out.println("Register Failure");
+				}
+				
+			}else {
+				System.out.println("Account EXIST!");
+			}
 			
 		} catch (SQLException e) {
 			System.out.println(e);
