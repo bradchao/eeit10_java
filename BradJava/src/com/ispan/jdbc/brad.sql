@@ -37,5 +37,24 @@ Inside Sales Coordinator	Laura	Callahan
 Sales Manager	Steven	Buchanan	
 Vice President, Sales	Andrew	Fuller	
 -----------------------------------------------------------
+SELECT FirstName, LastName, Region FROM `employees` 
+WHERE Region IS NOT NULL
+-----------------------------------------------------------
+SELECT ProductName, `UnitsInStock`, `UnitsOnOrder`,`ReorderLevel` 
+FROM `products` 
+WHERE UnitsInStock <= ReorderLevel
+-----------------------------------------------------------
+SELECT `EmployeeID`,`CustomerID`,`OrderID`,
+`RequiredDate`,`ShippedDate`
+FROM `orders` 
+WHERE `ShippedDate` > `RequiredDate`
+ORDER BY `CustomerID`
+-----------------------------------------------------------
+SELECT `OrderID`,`Freight`, `Freight`*1.1 FreightTotal
+FROM `orders` 
+WHERE `Freight` > 500
+-----------------------------------------------------------
+
+
 
 
