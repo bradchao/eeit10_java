@@ -54,6 +54,23 @@ SELECT `OrderID`,`Freight`, `Freight`*1.1 FreightTotal
 FROM `orders` 
 WHERE `Freight` > 500
 -----------------------------------------------------------
+SELECT `City`, count(`EmployeeID`) numEmployees
+FROM `employees`
+GROUP BY `City`
+HAVING numEmployees >= 2
+-----------------------------------------------------------
+SELECT ...
+FROM 
+WHERE
+GROUP BY
+HAVING
+ORDER BY
+LIMIT 
+-----------------------------------------------------------
+
+
+
+
 
 
 
