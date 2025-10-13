@@ -8,6 +8,7 @@ import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
+import java.sql.Statement;
 import java.util.Properties;
 
 import org.json.JSONArray;
@@ -51,6 +52,11 @@ public class Brad05 {
 					(?,?,?,?,?,?,?,?)
 				""";
 		try (Connection conn = DriverManager.getConnection(url, prop);) {
+			
+			Statement stmt = conn.createStatement();
+			stmt.execute("DELETE FROM gift");
+			stmt.execute("ALTER TABLE gift AUTO_INCREMENT = 1");
+			
 			PreparedStatement pstmt = conn.prepareStatement(sqlInsert);
 
 			JSONArray root = new JSONArray(json);
