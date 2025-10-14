@@ -3,6 +3,7 @@ package com.ispan.jdbc;
 import java.awt.BorderLayout;
 
 import javax.swing.JFrame;
+import javax.swing.JScrollPane;
 
 import com.ispan.apis.GiftTable;
 
@@ -14,7 +15,7 @@ public class MyGift extends JFrame{
 		
 		table = new GiftTable();
 		setLayout(new BorderLayout());
-		add(table, BorderLayout.CENTER);
+		add(new JScrollPane(table), BorderLayout.CENTER);
 		
 		
 		setSize(1024, 640);

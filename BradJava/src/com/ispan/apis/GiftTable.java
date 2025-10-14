@@ -10,7 +10,6 @@ public class GiftTable extends JTable {
 	public GiftTable() {
 		try {
 			db = new GiftDB();
-			db.queryDB();
 		} catch (Exception e) {
 			System.out.println(e);
 		}
@@ -42,7 +41,7 @@ public class GiftTable extends JTable {
 
 		@Override
 		public String getColumnName(int column) {
-			return String.format("Field %d", column);
+			return db.getColName(column);
 		}
 		
 		

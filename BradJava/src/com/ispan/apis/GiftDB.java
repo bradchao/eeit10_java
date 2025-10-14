@@ -8,7 +8,7 @@ import java.sql.Statement;
 public class GiftDB {
 	private static Connection conn = null;
 	private static final String QUERY_ALL = """
-			SELECT id, name, city, town, addr, feature
+			SELECT id 編號, name 名稱, city 縣市, town 鄉鎮, addr 地址, feature 特色
 			FROM gift
 			""";
 	private static ResultSet rs;
@@ -16,6 +16,7 @@ public class GiftDB {
 	 
 	public GiftDB() throws Exception {
 		conn = BradUtils.getConnection();
+		queryDB();
 	}
 	
 	public void queryDB() throws Exception{queryDB(QUERY_ALL);}
@@ -53,6 +54,8 @@ public class GiftDB {
 		}
 	}
 	
-	
+	public String getColName(int col) {
+		return fieldNames[col];
+	}
 	
 }
