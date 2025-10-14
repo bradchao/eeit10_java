@@ -58,4 +58,19 @@ public class GiftDB {
 		return fieldNames[col];
 	}
 	
+	public void setData(Object aValue, int row, int column) throws Exception {
+		rs.absolute(row + 1);
+		rs.updateString(column +1, (String)aValue);
+		rs.updateRow();
+	}
+	
+	public void delData(int row) {
+		try {
+			rs.absolute(row + 1);
+			rs.deleteRow();
+		}catch(Exception e) {
+			System.out.println(e);
+		}
+	}
+	
 }

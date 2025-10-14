@@ -1,6 +1,9 @@
 package com.ispan.apis;
 
-import javax.swing.JTabbedPane;
+import java.util.Timer;
+import java.util.TimerTask;
+
+import javax.swing.JOptionPane;
 import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
 
@@ -14,7 +17,18 @@ public class GiftTable extends JTable {
 			System.out.println(e);
 		}
 		setModel(new MyModel());
+		
 	}
+	
+	public void delRow() {
+		//System.out.println(getSelectedRow()) ;
+		int delNum = getSelectedRow();
+		if (delNum >= 0) {
+			db.delData(delNum);
+			repaint();
+		}
+	}
+	
 	
 	private class MyModel extends DefaultTableModel {
 
@@ -43,10 +57,20 @@ public class GiftTable extends JTable {
 		public String getColumnName(int column) {
 			return db.getColName(column);
 		}
-		
-		
-		
-		
+
+		@Override
+		public boolean isCellEditable(int row, int column) {
+			return column > 0;
+		}
+
+		@Override
+		public void setValueAt(Object aValue, int row, int column) {
+			try {
+				db.setData(aValue, row, column);
+			} catch (Exception e) {
+				JOptionPane.showMessageDialog(null, "ERROR");
+			}
+		}
 	}
 
 }
