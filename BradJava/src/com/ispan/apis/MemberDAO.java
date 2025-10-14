@@ -3,9 +3,9 @@ package com.ispan.apis;
 import java.util.List;
 
 public interface MemberDAO {
-	void addMember(Member member);
-	void updateMember(Member member);
-	void delMember(int id);
-	Member findById(int id);
-	List<Member> findAll();
+	boolean addMember(Member member) throws Exception ;
+	boolean updateMember(Member member) throws Exception ;
+	boolean delMember(int id) throws Exception ;
+	Member findById(int id) throws Exception ;
+	List<Member> findAll() throws Exception ;
 }
