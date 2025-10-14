@@ -72,5 +72,7 @@ public class GiftTable extends JTable {
 			}
 		}
 	}
+	
+
 
 }
