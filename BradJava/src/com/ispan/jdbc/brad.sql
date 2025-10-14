@@ -92,7 +92,22 @@ WHERE `CategoryID` = (
     FROM `categories` 
     WHERE `CategoryName` = 'Seafood'
 )
+------------------------------------
+SELECT o.EmployeeID, e.LastName, SUM(od.UnitPrice*od.Quantity) sum
+FROM `orders` o
+	JOIN employees e ON o.EmployeeID = e.EmployeeID
+    JOIN orderdetails od ON o.OrderID = od.OrderID
+GROUP BY o.EmployeeID
+ORDER BY sum DESC
 
-
+5 Buchanan 75567.750
+------------------------------------
+SELECT SUM(UnitPrice*Quantity) 
+FROM orderdetails
+WHERE OrderID IN (
+    SELECT OrderID FROM `orders` 
+    WHERE EmployeeID = 5
+)
+-----------------------------------
 
 
