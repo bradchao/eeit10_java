@@ -7,10 +7,16 @@ import java.util.List;
 public class MemberDAOImpl implements MemberDAO{
 	private final Connection conn;
 	private final String SQL_ADD = """
-			INSERT INTO member (account,passwd,name) VALUES (?,?,?)"
+			INSERT INTO member (account,passwd,name) VALUES (?,?,?)
 			""";
 	private final String SQL_UPDATE = """
-			UPDATE member SET account = ?, passwd = ?, name = ? WHERE id = ?"
+			UPDATE member SET account = ?, passwd = ?, name = ? WHERE id = ?
+			""";
+	private final String SQL_DELETE = """
+			DELETE FROM member WHERE id = ?
+			""";
+	private final String SQL_FIND_ID = """
+			SELECT id, account, passwd, name FROM member WHERE id = ?
 			""";
 	
 	public MemberDAOImpl (Connection conn) {
@@ -30,13 +36,23 @@ public class MemberDAOImpl implements MemberDAO{
 
 	@Override
 	public boolean updateMember(Member member) throws Exception {
-		
+		try(PreparedStatement pstmt = conn.prepareStatement(SQL_UPDATE)) {
+			pstmt.setString(1, member.getAccount());
+			pstmt.setString(2, BCrypt.hashpw(member.getPasswd(), BCrypt.gensalt()));
+			pstmt.setString(3, member.getName());
+			pstmt.setInt(4, member.getId());
+			int n = pstmt.executeUpdate();
+			return n > 0;
+		}		
 	}
 
 	@Override
 	public boolean delMember(int id) throws Exception {
-		// TODO Auto-generated method stub
-		
+		try(PreparedStatement pstmt = conn.prepareStatement(SQL_DELETE)) {
+			pstmt.setInt(1, id);
+			int n = pstmt.executeUpdate();
+			return n > 0;
+		}		
 	}
 
 	@Override
