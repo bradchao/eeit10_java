@@ -93,5 +93,10 @@ public class MemberDAOImpl implements MemberDAO{
 		}		
 		return members;
 	}
+	
+	public Member login(String account, String passwd) throws Exception {
+		
+		return null;
+	}
 
 }
