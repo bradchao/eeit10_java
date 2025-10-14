@@ -17,6 +17,11 @@ public class Brad17 {
 			String passwd = "123456";
 			
 			Member member = dao.login(account,passwd);
+			if (member != null) {
+				System.out.printf("Welcome, %s\n", member.getName());
+			}else {
+				System.out.println("get out here");
+			}
 			
 			
 		}catch(Exception e) {

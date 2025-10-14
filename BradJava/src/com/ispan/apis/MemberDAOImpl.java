@@ -23,6 +23,10 @@ public class MemberDAOImpl implements MemberDAO{
 	private final String SQL_FIND_ALL = """
 			SELECT id, account, passwd, name FROM member
 			""";
+	private final String SQL_FIND_ACCOUNT = """
+			SELECT id, account, passwd, name FROM member
+			WHERE account = ?
+			""";
 	
 	public MemberDAOImpl (Connection conn) {
 		this.conn = conn;
@@ -94,7 +98,27 @@ public class MemberDAOImpl implements MemberDAO{
 		return members;
 	}
 	
+	private Member findByAccount(String account) throws Exception{
+		try(PreparedStatement pstmt = conn.prepareStatement(SQL_FIND_ACCOUNT)) {
+			pstmt.setString(1, account);
+			ResultSet rs = pstmt.executeQuery();
+			if (rs.next()) {
+				Member member = new Member();
+				member.setId(rs.getInt("id"));
+				member.setAccount(rs.getString("account"));
+				member.setPasswd(rs.getString("passwd"));
+				member.setName(rs.getString("name"));
+				return member;
+			}
+		}		
+		return null;		
+	}
+	
 	public Member login(String account, String passwd) throws Exception {
+		Member member = findByAccount(account);
+		if (member != null && BCrypt.checkpw(passwd, member.getPasswd())) {
+			return member;
+		}
 		
 		return null;
 	}

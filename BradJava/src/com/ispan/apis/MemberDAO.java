@@ -8,4 +8,5 @@ public interface MemberDAO {
 	boolean delMember(int id) throws Exception ;
 	Member findById(int id) throws Exception ;
 	List<Member> findAll() throws Exception ;
+	Member login(String account, String passwd) throws Exception;
 }
