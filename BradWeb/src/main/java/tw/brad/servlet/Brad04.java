@@ -26,7 +26,7 @@ public class Brad04 extends HttpServlet {
 			//--------------------------------
 			response.setContentType("text/html; charset=UTF-8");
 			PrintWriter out = response.getWriter();
-			out.printf("%s + %s = %d", x, y, (intX + intY));
+			out.printf("%s +  %s = %d", x, y, (intX + intY));
 		}catch(Exception e) {
 			System.out.println(e);
 		}
