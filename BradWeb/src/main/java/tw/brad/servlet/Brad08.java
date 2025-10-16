@@ -27,6 +27,15 @@ public class Brad08 extends HttpServlet {
 			long size = part.getSize();			
 			
 			System.out.printf("%s:%s:%s:%d\n", name, type, sname, size);
+			
+			if (name.equals("upload") && size != 0) {
+				part.write(String.format("%s_%s", account, sname));
+				
+				//part.getInputStream();
+				
+			}
+			
+			
 		}
 		
 		
