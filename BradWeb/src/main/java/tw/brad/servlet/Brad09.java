@@ -17,11 +17,24 @@ import javax.imageio.ImageIO;
 public class Brad09 extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
+		double rate = 0;	// 50%
+		
+		try {
+			String r = request.getParameter("rate");
+			rate = Double.parseDouble(r);
+		}catch(Exception e) {
+		}
+		
+		
+		
 		BufferedImage img = new BufferedImage(400, 20, BufferedImage.TYPE_INT_RGB);
 		Graphics2D g2d = img.createGraphics();
 		
 		g2d.setColor(Color.YELLOW);
 		g2d.fillRect(0, 0, 400, 20);
+
+		g2d.setColor(Color.RED);
+		g2d.fillRect(0, 0, (int)(400*rate/100), 20);
 		
 		response.setContentType("image/jpeg");
 		ImageIO.write(img, "JPEG", response.getOutputStream());
