@@ -28,8 +28,10 @@ public class Brad16 extends HttpServlet {
 		String webContent;
 		try {
 			webContent = BradUtils.locaViewV2(view);
+			System.out.println(webContent);
 			out.printf(webContent, x, y, result);
 		} catch (Exception e) {
+			System.out.println(e);
 			webContent = "ERROR Page";
 			out.print(webContent);
 		}
