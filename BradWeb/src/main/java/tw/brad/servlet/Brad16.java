@@ -17,16 +17,23 @@ import java.io.PrintWriter;
 public class Brad16 extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
+		String x = (String)request.getAttribute("x");
+		String y = (String)request.getAttribute("y");
+		String result = (String)request.getAttribute("result");
+		
+		//-----------------------
+		PrintWriter out = response.getWriter();
+		
 		String webContent;
 		try {
-			webContent = BradUtils.loadView();
+			webContent = BradUtils.locaViewV2();
+			out.printf(webContent, x, y, result);
 		} catch (Exception e) {
 			webContent = "ERROR Page";
+			out.print(webContent);
 		}
 		
 		
-		PrintWriter out = response.getWriter();
-		out.print(webContent);
 		response.flushBuffer();
 	}
 
