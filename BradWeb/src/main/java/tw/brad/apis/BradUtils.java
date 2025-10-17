@@ -21,5 +21,11 @@ public class BradUtils {
 		Path path = Path.of(source);
 		return Files.readString(path);
 	}
+	public static String locaViewV2(String view) throws Exception {
+		String source = 
+			String.format("C:\\Users\\User\\git\\repository\\BradWeb\\src\\main\\webapp\\views\\%s.html", view);
+		Path path = Path.of(source);
+		return Files.readString(path);
+	}
 	
 }

@@ -20,13 +20,14 @@ public class Brad16 extends HttpServlet {
 		String x = (String)request.getAttribute("x");
 		String y = (String)request.getAttribute("y");
 		String result = (String)request.getAttribute("result");
+		String view = (String)request.getAttribute("view");
 		
 		//-----------------------
 		PrintWriter out = response.getWriter();
 		
 		String webContent;
 		try {
-			webContent = BradUtils.locaViewV2();
+			webContent = BradUtils.locaViewV2(view);
 			out.printf(webContent, x, y, result);
 		} catch (Exception e) {
 			webContent = "ERROR Page";

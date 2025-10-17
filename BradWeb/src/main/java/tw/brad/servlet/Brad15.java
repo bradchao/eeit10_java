@@ -20,6 +20,11 @@ public class Brad15 extends HttpServlet {
 	
 		String x = request.getParameter("x");
 		String y = request.getParameter("y");
+		String view = request.getParameter("view");
+
+		if (view == null) view = "view1";
+		
+		request.setAttribute("view", view);
 		
 		//----------------------------------------------
 		try {
