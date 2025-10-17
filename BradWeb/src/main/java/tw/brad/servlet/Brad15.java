@@ -22,7 +22,7 @@ public class Brad15 extends HttpServlet {
 		String y = request.getParameter("y");
 		String view = request.getParameter("view");
 
-		if (view == null) view = "view1";
+		if (view == null) view = "view3";
 		
 		request.setAttribute("view", view);
 		
@@ -41,7 +41,7 @@ public class Brad15 extends HttpServlet {
 		}
 		
 		//------------------------------------------
-		RequestDispatcher dispatcher = request.getRequestDispatcher("brad16");
+		RequestDispatcher dispatcher = request.getRequestDispatcher("brad17");
 		
 		response.setContentType("text/html; charset=UTF-8");
 		dispatcher.forward(request, response);
