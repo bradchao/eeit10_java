@@ -32,7 +32,9 @@ window.onload = function(){
 			chatDiv.style.display = "block";
 		}
 		webSocket.onmessage = function(event){
-			
+			console.log(event.data);
+			let mesgObj = JSON.parse(event.data);
+			log.innerHTML += mesgObj.message + "<br />";
 		}
 		webSocket.onclose = function(){
 			console.log("onclose");		

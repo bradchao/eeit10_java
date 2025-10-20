@@ -32,7 +32,7 @@ public class MyServer {
 	
 	@OnMessage
 	public void onMessage(String mesg, Session session) {
-		System.out.println("onMessage:" + mesg);
+		//System.out.println("onMessage:" + mesg);
 		for (Session userSession: sessions) {
 			try {
 				userSession.getBasicRemote().sendText(mesg);
