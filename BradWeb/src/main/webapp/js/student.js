@@ -7,8 +7,18 @@ window.onload = function(){
 		isConnect = true;
 	};
 	webSocket.onmessage = function(event){
-		let mesgObj = JSON.parse(event.data);
-		
+		if (isConnect){
+			let mesgObj = JSON.parse(event.data);
+			if (mesgObj.isClear){
+				clear();
+			}else{
+				if (mesgObj.isNewline){
+					newLine(mesgObj.x, mesgObj.y);
+				}else{
+					drawLine(mesgObj.x, mesgObj.y);
+				}
+			}
+		}
 	}
 	webSocket.onclose = function(){
 		isConnect = false;
