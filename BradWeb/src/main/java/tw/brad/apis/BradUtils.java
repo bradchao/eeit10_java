@@ -43,4 +43,9 @@ public class BradUtils {
 		return Files.readString(path);
 	}
 	
+	public static String calc(String x, String y, String op) {
+	
+		return "Brad";
+	}
+	
 }
