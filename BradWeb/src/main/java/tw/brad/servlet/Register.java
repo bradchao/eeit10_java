@@ -16,7 +16,7 @@ import java.sql.Connection;
 @WebServlet("/Register")
 public class Register extends HttpServlet {
 	private Connection conn;
-	private MemberDAO dao; 
+	private MemberDAOImpl dao; 
 	
     public Register() {
     	try {
@@ -42,10 +42,26 @@ public class Register extends HttpServlet {
 		member.setName(name);
 		
 		try {
-			dao.addMember(member);
+			Member m = dao.findByAccount(account);
+			if (m == null) {
+				if (dao.addMember(member)) {
+					// success
+					response.sendRedirect("brad15.jsp");
+				}else {
+					// failure
+					response.sendRedirect("brad14.jsp?err=1");
+				}
+			}else {
+				// exist
+				response.sendRedirect("brad14.jsp?err=2");
+			}
 		} catch (Exception e) {
+			// error
 			System.out.println(e);
+			response.sendRedirect("brad14.jsp?err=3");
 		}
+		
+		
 		
 	
 	

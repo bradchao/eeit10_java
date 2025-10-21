@@ -98,7 +98,7 @@ public class MemberDAOImpl implements MemberDAO{
 		return members;
 	}
 	
-	private Member findByAccount(String account) throws Exception{
+	public Member findByAccount(String account) throws Exception{
 		try(PreparedStatement pstmt = conn.prepareStatement(SQL_FIND_ACCOUNT)) {
 			pstmt.setString(1, account);
 			ResultSet rs = pstmt.executeQuery();

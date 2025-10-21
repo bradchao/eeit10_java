@@ -21,6 +21,7 @@ public class BradUtils {
 		prop.put("password", PASSWD);
 		return DriverManager.getConnection(url, prop);
 	}	
+	
 	public static String loadView() throws Exception{
 		String source = "C:\\Users\\User\\git\\repository\\BradWeb\\src\\main\\webapp\\views\\view1.html";
 		File html = new File(source);
