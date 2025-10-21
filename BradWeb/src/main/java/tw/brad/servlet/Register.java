@@ -61,9 +61,6 @@ public class Register extends HttpServlet {
 			response.sendRedirect("brad14.jsp?err=3");
 		}
 		
-		
-		
-	
 	
 	}
 
