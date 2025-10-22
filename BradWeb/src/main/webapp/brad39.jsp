@@ -10,7 +10,7 @@
 		password="root" 
 	/>
 	<sql:query var="rs">
-		SELECT * FROM gift LIMIT 7
+		SELECT * FROM gift LIMIT 10
 	</sql:query>
 </c:catch>
 <!DOCTYPE html>
@@ -26,6 +26,7 @@
 				<th>ID</th>
 				<th>Name</th>
 				<th>Address</th>
+				<th>Photo</th>
 			</tr>
 			
 			<c:forEach items="${rs.rows }" var="gift">
@@ -33,6 +34,7 @@
 					<td>${gift.id }</td>
 					<td>${gift.name }</td>
 					<td>${gift.city }${gift.town }${gift.addr }</td>
+					<td><img src="${gift.picurl }" width="160px" height="90px"></td>
 				</tr>
 			</c:forEach>
 			
