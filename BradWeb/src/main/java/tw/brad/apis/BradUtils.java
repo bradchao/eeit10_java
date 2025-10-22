@@ -8,6 +8,8 @@ import java.nio.file.Path;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.util.Properties;
+import java.util.SortedMap;
+import java.util.TreeMap;
 
 public class BradUtils {
 	private static final String url = "jdbc:mysql://localhost:3306/iii";
@@ -62,4 +64,16 @@ public class BradUtils {
 	public static String createScore() {
 		return (int)(Math.random()*101) + "";
 	}
+	
+	public static SortedMap[] parseFood(String json) {
+		TreeMap<String, String>[] foods = new TreeMap<>[];
+		
+		
+		return null;
+	}
+	
+	
+	
+	
+	
 }

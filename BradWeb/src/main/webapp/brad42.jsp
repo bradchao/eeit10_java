@@ -13,7 +13,7 @@
 		<c:import 
 			url="https://data.moa.gov.tw/Service/OpenData/ODwsv/ODwsvTravelFood.aspx"
 			var="data"></c:import>
-		${data }
+		<c:set var="foods" value=""></c:set>
 	
 	</body>
 </html>
