@@ -26,8 +26,10 @@
 		<c:set target="${member }" property="passwd">123456</c:set>
 		<c:set target="${member }" property="name">Brad</c:set>
 		${member.id }:${member.account }:${member.passwd }:${member.name }<br />
-	
-	
+		${member }<br />
+		<hr />
+		<c:remove var="member"/>
+		${member }<br />
 		
 	</body>
 </html>
