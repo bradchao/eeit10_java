@@ -11,6 +11,9 @@ import java.util.Properties;
 import java.util.SortedMap;
 import java.util.TreeMap;
 
+import org.json.JSONArray;
+import org.json.JSONObject;
+
 public class BradUtils {
 	private static final String url = "jdbc:mysql://localhost:3306/iii";
 	private static final String USER = "root";
@@ -66,10 +69,24 @@ public class BradUtils {
 	}
 	
 	public static SortedMap[] parseFood(String json) {
-		TreeMap<String, String>[] foods = new TreeMap<>[];
+		JSONArray root = new JSONArray(json);
+		TreeMap<String, String>[] foods = new TreeMap[root.length()];
 		
+		try {
+			for (int i=0; i<root.length(); i++) {
+				JSONObject food = root.getJSONObject(i);
+				
+				TreeMap<String, String> map = new TreeMap<String, String>();
+				map.put("name", food.getString("Name"));
+				map.put("tel", food.getString("Tel"));
+				map.put("addr", food.getString("City")+food.getString("Town")+food.getString("Address"));
+				foods[i] = map;
+			}
+		}catch(Exception e) {
+			System.out.println(e);
+		}
 		
-		return null;
+		return foods;
 	}
 	
 	

@@ -1,5 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
+    pageEncoding="UTF-8" import="tw.brad.apis.*"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/sql" prefix="sql" %>    
     
@@ -13,7 +13,7 @@
 		<c:import 
 			url="https://data.moa.gov.tw/Service/OpenData/ODwsv/ODwsvTravelFood.aspx"
 			var="data"></c:import>
-		<c:set var="foods" value=""></c:set>
+		<c:set var="foods" value="${BradUtils.parseFood(data) }"></c:set>
 	
 	</body>
 </html>
