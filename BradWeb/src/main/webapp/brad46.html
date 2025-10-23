@@ -13,7 +13,24 @@
 						"orderId": $('#orderId').val()
 					},
 					success: function(order){
+						//console.log(order);
+						$("#employee").html(order.employee);
+						$("#customer").html(order.customer);
 						
+						$('#table').empty();
+						$(order.details).each(
+							function(i, row){
+								$("#table").append(
+									'<tr>' +
+										'<td>' + (i+1) + '</td>' +
+										'<td>' + row.pid + '</td>' +
+										'<td>' + row.pname + '</td>' +
+										'<td>' + row.price + '</td>' +
+										'<td>' + row.qty + '</td>' +
+									'</tr>'
+								);
+							}		
+						);						
 					}
 				});
 			}
