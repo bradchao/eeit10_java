@@ -17,6 +17,31 @@
 					}
 				});
 			}
+			function test3(){
+				let url = "brad45.jsp";
+				$.post(url,{
+					"max": $('#max').val()
+				},function(data,status){
+					if (status=='success'){
+						$('#id1').html(data);
+					}					
+				});
+			}
+			function test4(){
+				let url = "brad45.jsp";
+				$.ajax({
+					url: url,
+					method: 'get',
+					data: {
+						"max": $('#max').val()
+					},
+					success: function(data){
+						$('#id1').html(data);
+					}
+				});
+			}
+			
+			
 		</script>
 	</head>
 	<body>
@@ -24,8 +49,10 @@
 		Lottery: <span id="id1"></span><hr />
 		<input type="number" id="max" />
 		<hr />
-		<input type="button" onclick="test1()" value="Test1" />
-		<input type="button" onclick="test2()" value="Test2" />
+		<input type="button" onclick="test1()" value="Load" />
+		<input type="button" onclick="test2()" value="Get" />
+		<input type="button" onclick="test3()" value="Post" />
+		<input type="button" onclick="test4()" value="ajax" />
 
 
 
