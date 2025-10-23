@@ -16,6 +16,7 @@
 						//console.log(order);
 						$("#employee").html(order.employee);
 						$("#customer").html(order.customer);
+						$("#total").html(order.total);
 						
 						$('#table').empty();
 						$(order.details).each(
@@ -27,6 +28,7 @@
 										'<td>' + row.pname + '</td>' +
 										'<td>' + row.price + '</td>' +
 										'<td>' + row.qty + '</td>' +
+										'<td>' + row.sum + '</td>' +
 									'</tr>'
 								);
 							}		
