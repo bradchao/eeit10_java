@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>Insert title here</title>
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+		<script type="text/javascript">
+			function test1(){
+				let url = "brad45.jsp?max=" + $('#max').val();
+				$('#id1').load(url);
+			}
+			function test2(){
+				let url = "brad45.jsp?max=" + $('#max').val();
+				$.get(url, function(data,status){
+					if (status=='success'){
+						$('#id1').html(data);
+					}
+				});
+			}
+		</script>
+	</head>
+	<body>
+		
+		Lottery: <span id="id1"></span><hr />
+		<input type="number" id="max" />
+		<hr />
+		<input type="button" onclick="test1()" value="Test1" />
+		<input type="button" onclick="test2()" value="Test2" />
+
+
+
+	
+	</body>
+</html>
